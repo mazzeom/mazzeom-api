@@ -28,8 +28,11 @@
     "apollo-server-express": "^2.20.0",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
+    "csurf": "^1.11.0",
+    "express-rate-limit": "^5.2.5",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.2",
+    "helmet": "^4.4.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3"
