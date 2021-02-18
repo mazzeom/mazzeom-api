@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { UsersModule } from './users/users.module';
+import { RestaurantOperationsModule } from './restaurant-operations/restaurant-operations.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UsersModule } from './users/users.module';
       signOptions: { expiresIn: '30m' },
     }),
     AuthenticationModule,
+    RestaurantOperationsModule,
   ],
   providers: [AuthenticationService, AuthenticationResolver],
   exports: [AuthenticationService, JwtModule],
