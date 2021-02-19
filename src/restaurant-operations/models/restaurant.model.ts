@@ -22,10 +22,10 @@ export class RestaurantOperation {
   dayOfWeek: DayOfWeek;
 
   @Field()
-  open: Date;
+  open: string;
 
   @Field()
-  close: Date;
+  close: string;
 
   @Field({ defaultValue: new Date() })
   createdAt: Date;

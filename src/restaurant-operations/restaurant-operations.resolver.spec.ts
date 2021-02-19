@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { RestaurantOperationsResolver } from './restaurant-operations.resolver';
 
 describe('RestaurantOperationsResolver', () => {
@@ -9,7 +10,9 @@ describe('RestaurantOperationsResolver', () => {
       providers: [RestaurantOperationsResolver],
     }).compile();
 
-    resolver = module.get<RestaurantOperationsResolver>(RestaurantOperationsResolver);
+    resolver = module.get<RestaurantOperationsResolver>(
+      RestaurantOperationsResolver,
+    );
   });
 
   it('should be defined', () => {
