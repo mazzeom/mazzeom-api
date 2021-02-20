@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { RestaurantOperation } from './models/restaurant.model';
+import { RestaurantOperation } from './models/restaurant-operation.model';
 import { restaurantOperations } from './__mocks__/restaurant-operations';
 
 @Injectable()

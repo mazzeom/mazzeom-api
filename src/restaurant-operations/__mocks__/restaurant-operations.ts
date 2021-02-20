@@ -1,4 +1,7 @@
-import { DayOfWeek, RestaurantOperation } from '../models/restaurant.model';
+import {
+  DayOfWeek,
+  RestaurantOperation,
+} from '../models/restaurant-operation.model';
 
 export const restaurantOperations: RestaurantOperation[] = [
   {
