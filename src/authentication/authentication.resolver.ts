@@ -3,8 +3,7 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { AuthenticationService } from './authentication.service';
 import { SignInResult } from './models/sign-in-result.model';
 import { UnauthorizedException } from '@nestjs/common';
-import { UserInput } from 'src/users/models/userInput.model';
-import * as bcrypt from 'bcrypt';
+import { UserInput } from '../users/models/userInput.model';
 
 @Resolver()
 export class AuthenticationResolver {

@@ -5,9 +5,9 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
+import { RestaurantOperationsModule } from './restaurant-operations/restaurant-operations.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { UsersModule } from './users/users.module';
-import { RestaurantOperationsModule } from './restaurant-operations/restaurant-operations.module';
 
 @Module({
   imports: [
