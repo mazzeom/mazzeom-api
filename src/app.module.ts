@@ -8,6 +8,7 @@ import { Module } from '@nestjs/common';
 import { RestaurantOperationsModule } from './restaurant-operations/restaurant-operations.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { UsersModule } from './users/users.module';
+import { PrismaService } from './prisma/prisma.service';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { UsersModule } from './users/users.module';
     AuthenticationModule,
     RestaurantOperationsModule,
   ],
-  providers: [AuthenticationService, AuthenticationResolver],
+  providers: [AuthenticationService, AuthenticationResolver, PrismaService],
   exports: [AuthenticationService, JwtModule],
 })
 export class AppModule {}

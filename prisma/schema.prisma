@@ -1,11 +1,84 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+model authentication_oauth2 {
+  id         Int                            @id @default(autoincrement())
+  user_id    Int
+  provider   authentication_oauth2_provider
+  token      String                         @db.VarChar(45)
+  created_at DateTime                       @default(now()) @db.DateTime(0)
+  updated_at DateTime                       @default(now()) @db.DateTime(0)
+  deleted_at DateTime?                      @db.DateTime(0)
+}
+
+model authentication_password {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  email      String    @db.VarChar(45)
+  password   String?   @db.VarChar(45)
+  created_at DateTime  @default(now()) @db.DateTime(0)
+  updated_at DateTime  @default(now()) @db.DateTime(0)
+  deleted_at DateTime? @db.DateTime(0)
+}
+
+model restaurant {
+  id               Int       @id @default(autoincrement())
+  name             String    @db.VarChar(100)
+  sub_name         String?   @db.VarChar(100)
+  country_code     String?   @db.VarChar(5)
+  phone_number     String?   @db.VarChar(12)
+  address          String?   @db.VarChar(100)
+  detailed_address String?   @db.VarChar(100)
+  post_code        String?   @db.VarChar(6)
+  latitude         Float?
+  longitude        Float?
+  created_at       DateTime  @default(now()) @db.DateTime(0)
+  updated_at       DateTime  @default(now()) @db.DateTime(0)
+  deleted_at       DateTime? @db.DateTime(0)
+}
+
+model restaurant_operation {
+  id            Int                              @id @default(autoincrement())
+  restaurant_id Int
+  day_of_week   restaurant_operation_day_of_week
+  open          DateTime                         @db.Time(0)
+  close         DateTime                         @db.Time(0)
+  created_at    DateTime                         @default(now()) @db.DateTime(0)
+  updated_at    DateTime                         @default(now()) @db.DateTime(0)
+  deleted_at    DateTime?                        @db.DateTime(0)
+}
+
+model user {
+  id         Int         @id @default(autoincrement())
+  status     user_status @default(NORMAL)
+  created_at DateTime    @default(now()) @db.DateTime(0)
+  updated_at DateTime    @default(now()) @db.DateTime(0)
+  deleted_at DateTime?   @db.DateTime(0)
+}
+
+enum authentication_oauth2_provider {
+  GOOGLE
+  APPLE
+}
+
+enum restaurant_operation_day_of_week {
+  SUN
+  MON
+  TUES
+  WED
+  TURS
+  FRI
+  SAT
+}
+
+enum user_status {
+  NORMAL
+  BLOCK
+  DORMANT
 }
