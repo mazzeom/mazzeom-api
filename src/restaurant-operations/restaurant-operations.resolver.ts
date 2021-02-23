@@ -8,7 +8,7 @@ export class RestaurantOperationsResolver {
     private readonly restaurantOperationService: RestaurantOperationsService,
   ) {}
 
-  @Query(() => RestaurantOperation)
+  @Query(() => [RestaurantOperation])
   async restaurantOperations(
     @Args('restaurantId') restaurantId: number,
   ): Promise<RestaurantOperation[]> {
