@@ -14,7 +14,7 @@ export class AuthenticationResolver {
     const { email, password } = userInput;
 
     const user = await this.authenticationService.validateUser({
-      username: email,
+      email,
       password,
     });
 

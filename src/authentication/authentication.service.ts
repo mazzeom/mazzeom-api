@@ -18,26 +18,23 @@ export class AuthenticationService {
   }
 
   async validateUser({
-    username,
+    email,
     password,
-  }: Pick<User, 'username' | 'password'>): Promise<Pick<
+  }: Pick<User, 'email' | 'password'>): Promise<Pick<
     User,
-    'id' | 'username'
+    'id' | 'email'
   > | null> {
-    const user = await this.usersService.findOne(username);
+    const user = await this.usersService.findOne(email);
 
     if (user && bcrypt.compare(password, user.password)) {
-      const { id, username } = user;
-      return { id, username };
+      const { id, email } = user;
+      return { id, email };
     }
     return null;
   }
 
-  async signIn({
-    id,
-    username,
-  }: Pick<User, 'id' | 'username'>): Promise<AccessInfo> {
-    const payload = { id, username };
+  async signIn({ id, email }: Pick<User, 'id' | 'email'>): Promise<AccessInfo> {
+    const payload = { id, email };
     return {
       type: 'Bearer',
       accessToken: this.jwtService.sign(payload),
