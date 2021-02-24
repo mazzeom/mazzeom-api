@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
+import { AccessInfo } from './models/access-info.model';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../users/models/user.model';
@@ -35,10 +36,12 @@ export class AuthenticationService {
   async signIn({
     id,
     username,
-  }: Pick<User, 'id' | 'username'>): Promise<{ accessToken: string }> {
+  }: Pick<User, 'id' | 'username'>): Promise<AccessInfo> {
     const payload = { id, username };
     return {
+      type: 'Bearer',
       accessToken: this.jwtService.sign(payload),
+      refreshToken: this.jwtService.sign(payload), // TO-DO Refresh Token
     };
   }
 

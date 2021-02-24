@@ -1,7 +1,7 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 
 import { AuthenticationService } from './authentication.service';
-import { SignInResult } from './models/sign-in-result.model';
+import { AccessInfo } from './models/access-info.model';
 import { UnauthorizedException } from '@nestjs/common';
 import { UserInput } from '../users/models/userInput.model';
 
@@ -9,16 +9,16 @@ import { UserInput } from '../users/models/userInput.model';
 export class AuthenticationResolver {
   constructor(private authenticationService: AuthenticationService) {}
 
-  @Mutation(() => SignInResult)
-  async signIn(@Args('userInput') userInput: UserInput): Promise<SignInResult> {
-    const { username, password } = userInput;
+  @Mutation(() => AccessInfo)
+  async signIn(@Args('userInput') userInput: UserInput): Promise<AccessInfo> {
+    const { email, password } = userInput;
 
     const user = await this.authenticationService.validateUser({
-      username,
+      username: email,
       password,
     });
 
-    if (!user) throw new UnauthorizedException(username);
+    if (!user) throw new UnauthorizedException(email);
 
     return await this.authenticationService.signIn(user);
   }
