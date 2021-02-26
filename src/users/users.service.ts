@@ -4,7 +4,7 @@ import { users } from './__mocks__/users.mocks';
 
 @Injectable()
 export class UsersService {
-  async findOne(email: string): Promise<User | undefined> {
-    return users.find((user) => user.email === email);
+  async findOne(username: string): Promise<User | undefined> {
+    return users.find((user) => user.username === username);
   }
 }
