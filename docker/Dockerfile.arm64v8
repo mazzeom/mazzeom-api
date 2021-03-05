@@ -3,9 +3,9 @@ MAINTAINER fine<dlgmltjr0925@gmail.com>
 
 EXPOSE 3000
 
-RUN mkdir -p /mazzeom-api
+RUN mkdir -p /api
 
-WORKDIR /mazzeom-api
+WORKDIR /api
 
 COPY .. .
 
